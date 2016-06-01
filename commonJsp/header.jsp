@@ -27,7 +27,7 @@
 
 		String groupName = (String) request.getSession().getAttribute(
 				"_USERGROUP");
-		System.out.println(groupName+"  "+branchName+"  "+dispName);
+		
 			
 	%>
 

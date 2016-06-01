@@ -92,7 +92,7 @@
 						</TD>
 						<TD><INPUT type="button" value="+"
 							onclick="addRow('partyTypeTable');" /></TD>
-						<TD><INPUT type="button" value="-" onclick="deleteRow('1');" /></TD>
+						<TD><INPUT type="button" value="-" onclick="deleteRow(this);" /></TD>
 					</TR>
 					</s:iterator>
                   </s:if>
@@ -107,8 +107,7 @@
 					onClick="window.location.href='exitDeedType';">
 			</div>
 			<s:hidden name="rowNumber" id="rownumber"/>
-			<s:hidden name="rowIndex" id="rowIndex"/>
-			<s:hidden name="action" id="action"/>
+			
 	</s:form>
 </body>
 
@@ -139,17 +138,27 @@
 		var buttonDelete = document.createElement("input");
 		buttonDelete.type = "button";
 		buttonDelete.value ="-";
-		buttonDelete.setAttribute("onClick", "javascript:deleteRow("+(rowCount+1) + ")");
+		buttonDelete.setAttribute("onClick", "javascript:deleteRow(this)");
 		cell3.appendChild(buttonDelete);
 		
-	 document.getElementById("rownumber").value=rowCount+1;
+	 document.getElementById("rownumber").value=rowCount;
 
 	}
 	function deleteRow(count) {
-		document.getElementById("rowIndex").value=count;
-		document.getElementById("action").value="delete";
-		alert(document.getElementById("rowIndex").value);
-		document.DeedTypeForm.submit();
+
+		var i = count.parentNode.parentNode.rowIndex;
+	    var table = document.getElementById('partyTypeTable');
+		var noOfRows = table.rows.length;
+		if(noOfRows>2){
+			document.getElementById("partyTypeTable").deleteRow(i);
+			document.getElementById("rownumber").value=noOfRows-1;
+			
+		}
+	    
+		else{
+			alert("Minimum Two party type is required");
+			
+		}
 	}
 	
 </script>

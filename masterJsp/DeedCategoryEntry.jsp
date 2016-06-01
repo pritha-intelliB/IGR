@@ -64,6 +64,7 @@
 				<input type="button" name="Exit" value="Exit" class="button"
 					onClick="window.location.href='exitDeedCategory';">
 			</div>
+		</div>	
 			
 	</s:form>
 </body>

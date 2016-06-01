@@ -264,6 +264,154 @@
 		<!-- END OF FEE MASTER ENTRY -->
 
 
+
+
+
+
+
+
+	<!-- START OF DEED CATEGORY EDIT -->
+		<action name="DeedCategoryEdit" class="com.igr.master.DeedCategoryEdit">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addDeedCategory</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="input">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/DeedCategoryEdit.jsp</result>
+		</action>
+
+
+		<action name="updateDeedCategory" class="com.igr.master.DeedCategoryEdit"
+			method="updateDeedCategory">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="input">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		
+		<action name="deleteDeedCategory" class="com.igr.master.DeedCategoryEdit"
+			method="deleteDeedCategory">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="input">masterJsp/DeedCategoryEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitDeedCategoryEdit" class="com.igr.master.DeedCategoryEdit"
+			method="exitDeedCategoryEdit">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF DEED CATEGORY EDIT -->
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- START OF FEE MASTER EDIT -->
+		<action name="FeeMasterEdit" class="com.igr.master.FeeMasterEdit">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addFeeMaster</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="input">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/FeeMasterEdit.jsp</result>
+		</action>
+
+
+
+		<action name="updateFeeMaster" class="com.igr.master.FeeMasterEntry"
+			method="updateFeeMaster">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="input">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		
+		
+		<action name="deleteFeeMaster" class="com.igr.master.FeeMasterEntry"
+			method="deleteFeeMaster">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="input">masterJsp/FeeMasterEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitFeeMasterEdit" class="com.igr.master.FeeMasterEdit"
+			method="exitFeeMasterEdit">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF FEE MASTER EDIT -->
+		
+		
+		
+		
+		
+		
+		
+				<!-- START OF DEED TYPE EDIT -->
+		<action name="DeedTypeEdit" class="com.igr.master.DeedTypeEdit">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addDeedType</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/DeedTypeEdit.jsp</result>
+			<result name="input">masterJsp/DeedTypeEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/DeedTypeEdit.jsp</result>
+		</action>
+
+
+		
+		<action name="loadParty" class="com.igr.master.DeedTypeEdit"
+			method="loadParty">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="deed_type_id" />
+			</result>
+		</action>
+		
+	
+		
+
+		<action name="updateDeedType" class="com.igr.master.DeedTypeEdit"
+			method="updateDeedType">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/DeedTypeEdit.jsp</result>
+			<result name="input">masterJsp/DeedTypeEdit.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitDeedTypeEdit" class="com.igr.master.DeedTypeEdit"
+			method="exitDeedTypeEdit">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF DEED TYPE EDIT -->
+
 		
 	</package>
 
