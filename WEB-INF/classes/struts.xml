@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+	<constant name="struts.multipart.maxSize" value="30720000" />
+	<constant name="struts.action.excludePattern" value="/servlet/DownloadServlet" />
+
+	<package name="default"
+		extends="struts-default,json-default,jasperreports-default" namespace="/">
+
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+			<result-type name="jasper"
+				class="org.apache.struts2.views.jasperreports.JasperReportsResult" />
+		</result-types>
+
+		<interceptors>
+		     <interceptor class="com.igr.commonUtility.LogInterceptor" name="loginInterceptor">
+                </interceptor>
+			<interceptor name="IGRFilter" class="com.igr.commonUtility.IGRFilter">
+				<param name="hello">Hello world</param>
+			</interceptor>
+			<interceptor-stack name="mystack">
+			     <interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="IGRFilter"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error">/commonJsp/hotLinking.jsp</result>
+		</global-results>
+
+
+		 <!-- login action -->
+        <action name="LoginAction" class="com.igr.commonUtility.LoginAction" method="login">
+                <result name="success" type="redirect">homeAction</result>
+                <result name="login">/commonJsp/login.jsp</result>
+        </action>
+
+        <!-- home link action -->
+        <action name="homeAction" class="com.igr.commonUtility.LoginAction" method="home">
+                <interceptor-ref name="mystack" />
+                <result name="login">/commonJsp/login.jsp</result>
+                <result name="success">/commonJsp/main.jsp</result>
+        </action>
+        
+        <!-- logout action -->
+        <action name="logOut" class="com.igr.commonUtility.LoginAction" method="logOut">
+                <result>/commonJsp/login.jsp</result>
+        </action>
+
+
+
+
+		<!-- START FIRST TOKEN ENTRY -->
+		<action name="IssueFirstTokenAction" class="com.igr.registration.IssueFirstTokenAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addFirstToken</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">registrationJsp/IssueFirstToken.jsp</result>
+			<result name="input">registrationJsp/IssueFirstToken.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">registrationJsp/IssueFirstToken.jsp</result>
+		</action>
+
+		<action name="addFirstToken" class="com.igr.registration.IssueFirstTokenAction"
+			method="addFirstToken">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">registrationJsp/IssueFirstToken.jsp</result>
+			<result name="input">registrationJsp/IssueFirstToken.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+		<action name="exitFirstToken" class="com.igr.registration.IssueFirstTokenAction"
+			method="exitFirstToken">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END FIRST TOKEN ENTRY -->
+
+
+
+
+
+
+
+		<!-- START SECOND TOKEN ENTRY -->
+		<action name="IssueSecondTokenAction" class="com.igr.registration.IssueSecondTokenAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addSecondToken</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">registrationJsp/IssueSecondToken.jsp</result>
+			<result name="input">registrationJsp/IssueSecondToken.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">registrationJsp/IssueSecondToken.jsp</result>
+		</action>
+
+
+		<action name="getDataValue" class="com.igr.registration.IssueSecondTokenAction"
+			method="getDataValue">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="firstTokenNo" />
+			</result>
+		</action>
+
+
+
+		<action name="addSecondToken" class="com.igr.registration.IssueSecondTokenAction"
+			method="addSecondToken">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">registrationJsp/IssueSecondToken.jsp</result>
+			<result name="input">registrationJsp/IssueSecondToken.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+		<action name="exitSecondToken" class="com.igr.registration.IssueSecondTokenAction"
+			method="exitSecondToken">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END SECOND TOKEN ENTRY -->
+
+
+
+
+
+
+
+
+		<!-- START OF DEED TYPE ENTRY -->
+		<action name="DeedTypeEntry" class="com.igr.master.DeedTypeEntry">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addDeedType</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/DeedTypeEntry.jsp</result>
+			<result name="input">masterJsp/DeedTypeEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/DeedTypeEntry.jsp</result>
+		</action>
+
+
+		<action name="loadData" class="com.igr.master.DeedTypeEntry"
+			method="loadData">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="rowNumber" />
+			</result>
+		</action>
+		
+	
+		
+
+		<action name="addDeedType" class="com.igr.master.DeedTypeEntry"
+			method="addDeedType">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/DeedTypeEntry.jsp</result>
+			<result name="input">masterJsp/DeedTypeEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitDeedType" class="com.igr.master.DeedTypeEntry"
+			method="exitDeedType">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF DEED TYPE ENTRY -->
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- START OF DEED CATEGORY ENTRY -->
+		<action name="DeedCategoryEntry" class="com.igr.master.DeedCategoryEntry">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addDeedCategory</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/DeedCategoryEntry.jsp</result>
+			<result name="input">masterJsp/DeedCategoryEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/DeedCategoryEntry.jsp</result>
+		</action>
+
+
+
+		<action name="addDeedCategory" class="com.igr.master.DeedCategoryEntry"
+			method="addDeedCategory">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/DeedCategoryEntry.jsp</result>
+			<result name="input">masterJsp/DeedCategoryEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitDeedCategory" class="com.igr.master.DeedCategoryEntry"
+			method="exitDeedCategory">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF DEED CATEGORY ENTRY -->
+		
+		
+		
+		
+		
+		
+		<!-- START OF FEE MASTER ENTRY -->
+		<action name="FeeMasterEntry" class="com.igr.master.FeeMasterEntry">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addFeeMaster</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">masterJsp/FeeMasterEntry.jsp</result>
+			<result name="input">masterJsp/FeeMasterEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">masterJsp/FeeMasterEntry.jsp</result>
+		</action>
+
+
+
+		<action name="addFeeMaster" class="com.igr.master.FeeMasterEntry"
+			method="addFeeMaster">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">masterJsp/FeeMasterEntry.jsp</result>
+			<result name="input">masterJsp/FeeMasterEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+
+		<action name="exitFeeMaster" class="com.igr.master.FeeMasterEntry"
+			method="exitFeeMaster">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END OF FEE MASTER ENTRY -->
+
+
+		
+	</package>
+
+
+
+
+</struts>
