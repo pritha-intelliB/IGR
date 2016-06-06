@@ -117,6 +117,17 @@
 			</result>
 		</action>
 
+
+<action name="loadCategory" class="com.igr.registration.IssueSecondTokenAction"
+			method="loadCategory">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="deed_type_id" />
+				<param name="language" />
+			</result>
+		</action>
+
 		
 		<action name="addSecondToken" class="com.igr.registration.IssueSecondTokenAction"
 			method="addSecondToken">

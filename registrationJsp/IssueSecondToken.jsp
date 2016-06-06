@@ -76,6 +76,31 @@
 							fieldName="dsr_location" theme="igr" cssClass="smallErrorMsg" />
 					</td>
 				</tr>
+				
+				<tr>
+			
+				<td class="tdLabel"><s:property
+							value="getText('global.Deed_Type_Name')" />*:</td>
+					<td class="field"><s:select headerKey="0" headerValue="Select"
+							list="deedTypeList" listKey="typeCode" onchange="loadDeedCategory(this.value);"
+							listValue="typeDesc" name="deed_type_id" cssClass="combobox"
+							theme="simple" required="true" /> <s:fielderror
+							fieldName="deed_type_id" theme="igr" cssClass="smallErrorMsg" /></td>		
+			
+			
+				<td class="tdLabel"><s:property
+							value="getText('global.Deed_Category')" />*:</td>
+					<td class="field"><s:select headerKey="0" headerValue="Select"
+							list="deedCategoryList" listKey="typeCode" id="deed_category"
+							listValue="typeDesc" name="deed_category_id" cssClass="combobox"
+							theme="simple" required="true"  /> <s:fielderror
+							fieldName="deed_category_id" theme="igr" cssClass="smallErrorMsg" /></td>
+							
+				
+				</tr>
+				
+				
+				
 				<tr>
 				<td class="tdLabel"><s:property
 							value="getText('global.stamp_type')" />*:</td>
@@ -171,7 +196,7 @@
 							maxlength="10"></s:textfield>
 						<TD>  
 						<s:textfield name="stamp_value"
-							cssClass="field" id="stamp_value" value="%{typeCode}"  theme="simple"
+							cssClass="field" id="stamp_value" value="%{typeDesc}"  theme="simple"
 							maxlength="10"></s:textfield>
 						</TD>
 						
@@ -179,7 +204,7 @@
 					</TR>
 					</s:iterator>
                   </s:if>
-                  
+                  <s:hidden name="language" id="language"/>	
 				</table>
 			</div>
 			
@@ -227,6 +252,31 @@
 			
 		
 		}
+	
+	
+	function loadDeedCategory(value)  
+	{
+		
+		  try{
+		    var formInput= 'deed_type_id='+value+"&language="+document.getElementById("language").value;  
+		    var options='';   
+		      $("#deed_category").html(options);  
+		      $.getJSON('loadCategory.action', formInput,function(data) {
+		    	options = '<option selected value="">Select</option>';
+		    	$.each(data.deedTypeList, function(i,item){
+		    		options += '<option value="' + item.typeCode + '">' + item.typeDesc + '</option>';  
+		        });  
+		          
+		        $("#deed_category").html(options);   
+		    });  
+		  }
+		  catch(Exception)
+		  {
+			  alert("Error" + Exception);
+		  }
+		
+		
+	}	
 </script>	
 </html>
 <%@include file="../commonJsp/footer.inc"%>

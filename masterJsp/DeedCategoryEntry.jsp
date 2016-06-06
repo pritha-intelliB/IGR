@@ -53,6 +53,37 @@
 							theme="simple" required="true" /> <s:fielderror
 							fieldName="stamp_unit" theme="igr" cssClass="smallErrorMsg" /></td>
 				</tr>
+				
+				
+				<tr>
+					<td class="tdLabel"><s:property
+							value="getText('global.add_stamp_value')" />*:</td>
+					<td class="field"><s:textfield name="additionalStampValue" cssClass="field"
+							id="fee_val" required="true" theme="simple" maxlength="10">
+							<s:fielderror fieldName="additionalStampValue" theme="igr"
+								cssClass="smallErrorMsg" />
+						</s:textfield></td>
+					<td class="field"><s:select headerKey="" headerValue="Select"
+							list="stampValueList" listKey="typeCode"
+							listValue="typeDesc" name="additionalStampValueUnit" id="additionalStampValueUnit" cssClass="combobox"
+							theme="simple" required="true" /> <s:fielderror
+							fieldName="additionalStampValueUnit" theme="igr" cssClass="smallErrorMsg" /></td>
+				</tr>
+				
+				<tr>
+					<td class="tdLabel"><s:property
+							value="getText('global.cess')" />*:</td>
+					<td class="field"><s:textfield name="cessValue" cssClass="field"
+							id="fee_val" required="true" theme="simple" maxlength="10">
+							<s:fielderror fieldName="cessValue" theme="igr"
+								cssClass="smallErrorMsg" />
+						</s:textfield></td>
+						
+						</tr>
+				
+				
+				
+				
 						</table>
 
 

@@ -33,7 +33,10 @@
 												               '<s:property value="deed_type_id" />',
 												               '<s:property value="category_name" />',
 												               '<s:property value="stamp_fee" />',
-												               '<s:property value="stamp_unit" />')"><font
+												               '<s:property value="stamp_unit" />',
+												               '<s:property value="addl_stamp_value" />',
+												                '<s:property value="addl_stamp_unit" />',
+												               '<s:property value="cess_value" />')"><font
 													color="BLUE"><s:property value="category_name" /></font></a></td>
 										</tr>
 									</s:iterator>
@@ -87,6 +90,34 @@
 											cssClass="combobox" theme="simple" required="true" /> <s:fielderror
 											fieldName="stamp_unit" theme="igr" cssClass="smallErrorMsg" /></td>
 								</tr>
+								
+								<tr>
+					<td class="tdLabel"><s:property
+							value="getText('global.add_stamp_value')" />*:</td>
+					<td class="field"><s:textfield name="additionalStampValue" id="additionalStampValue" cssClass="field"
+							required="true" theme="simple" maxlength="10">
+							<s:fielderror fieldName="additionalStampValue" theme="igr"
+								cssClass="smallErrorMsg" />
+						</s:textfield></td>
+					<td class="field"><s:select headerKey="" headerValue="Select"
+							list="stampValueList" listKey="typeCode"
+							listValue="typeDesc" name="additionalStampValueUnit" id="additionalStampValueUnit" cssClass="combobox"
+							theme="simple" required="true" /> <s:fielderror
+							fieldName="additionalStampValueUnit" theme="igr" cssClass="smallErrorMsg" /></td>
+				</tr>
+				
+				<tr>
+					<td class="tdLabel"><s:property
+							value="getText('global.cess')" />*:</td>
+					<td class="field"><s:textfield name="cessValue" id="cessValue" cssClass="field"
+							 required="true" theme="simple" maxlength="10">
+							<s:fielderror fieldName="cessValue" theme="igr"
+								cssClass="smallErrorMsg" />
+						</s:textfield></td>
+						
+						</tr>
+								
+								
 								<s:hidden name="deedCategoryID" id="deedCategoryID" />
 							</table>
 						</div>
@@ -113,12 +144,15 @@
 </body>
 <script type="text/javascript">
 	function setValue(deed_category_id, deed_type_id, category_name, stamp_fee,
-			stamp_unit) {
+			stamp_unit,additionalStampValue,additionalStampValueUnit,cessValue) {
 		document.getElementById('deedCategoryID').value = deed_category_id;
 		document.getElementById('deedID').value = deed_type_id;
 		document.getElementById('category_name').value = category_name;
 		document.getElementById('fee_val').value = stamp_fee;
 		document.getElementById('stamp_unit').value = stamp_unit;
+		document.getElementById('additionalStampValue').value = additionalStampValue;
+		document.getElementById('additionalStampValueUnit').value = additionalStampValueUnit;
+		document.getElementById('cessValue').value = cessValue;
 
 	}
 </script>

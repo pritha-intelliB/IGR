@@ -85,7 +85,7 @@
 
 				<tr>
 					<td class="tdLabel"><s:property
-							value="getText('global.global.Book')" />*:</td><TD><s:select headerKey="" headerValue="Select"
+							value="getText('global.Book')" />*:</td><TD><s:select headerKey="" headerValue="Select"
 							list="bookTypeList" listKey="typeCode" listValue="typeDesc"
 							name="book_id" id="book_id" cssClass="combobox" theme="simple"
 							required="true" /> <s:fielderror fieldName="book_id"
