@@ -48,7 +48,8 @@
 								cssClass="smallErrorMsg" />
 						</s:textfield></td>
 					<td class="field"><s:select headerKey="" headerValue="Select"
-							list="stampValueList" name="fee_unit" cssClass="combobox"
+							list="stampValueList" listKey="typeCode"
+							listValue="typeDesc" name="fee_unit" id="fee_unit" cssClass="combobox"
 							theme="simple" required="true" /> <s:fielderror
 							fieldName="fee_unit" theme="igr" cssClass="smallErrorMsg" /></td>
 				</tr>

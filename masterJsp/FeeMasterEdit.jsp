@@ -25,8 +25,8 @@
 								style="height: 150px; width: 350px; overflow-x: hidden"
 								id="results">
 								
-				<table id="deedCategoryTable"
-									align="center" border="1"  style="height: 150px; width: 250px">
+				<table id="deedCategoryTable" class="smallAppFormBlock"
+									align="center" border="1">
 									
 					<caption class="formBlockCaption">Fee Name :~</caption>
 					<s:iterator value="feeMasterList" status="status">
@@ -39,7 +39,7 @@
 												               '<s:property value="fee_val" />',
 												               '<s:property value="fee_unit" />',
 												               '<s:property value="depends_on" />')">
-							<s:property value="fee_name" /></a>
+							<font color="BLUE"><s:property value="fee_name" /></font></a>
 							
 							
 							</td>
@@ -88,9 +88,12 @@
 								cssClass="smallErrorMsg" />
 						</s:textfield></td>
 					<td class="field"><s:select headerKey="" headerValue="Select"
-							list="stampValueList" name="fee_unit" id="fee_unit" cssClass="combobox"
+							list="stampValueList" listKey="typeCode"
+							listValue="typeDesc" name="fee_unit" id="fee_unit" cssClass="combobox"
 							theme="simple" required="true" /> <s:fielderror
 							fieldName="fee_unit" theme="igr" cssClass="smallErrorMsg" /></td>
+							
+							
 				</tr>
 				
 				<tr>

@@ -24,8 +24,7 @@
 				<div align="center"
 								style="height: 150px; width: 350px; overflow-x: hidden"
 								id="results">
-				<table id="deedCategoryTable" border="1" align="center"
-					 style="height: 150px; width: 250px">
+				<table id="deedCategoryTable" border="1" align="center" class="smallAppFormBlock">
 					<caption class="formBlockCaption">Deed Type :~</caption>
 					<s:iterator value="deedTypeList">
 					<tr>
@@ -34,7 +33,7 @@
 												               '<s:property value="deed_name" />',
 												               '<s:property value="deed_code" />',
 												               '<s:property value="property_details" />',
-												               '<s:property value="book_id" />')"><s:property value="deed_name" /></a></td>
+												               '<s:property value="book_id" />')"><font color="BLUE"><s:property value="deed_name" /></font></a></td>
 					</tr>
 					</s:iterator>
 					</table>
@@ -77,19 +76,23 @@
 					<td class="tdLabel"><s:property
 							value="getText('global.Property_Required')" />*:</td>
 						<td class="field"><s:select headerKey="" headerValue="Select"
-							list="propertyRequiredList" listKey="typeDesc" listValue="typeCode"
+							list="propertyRequiredList" listKey="typeCode" listValue="typeDesc"
 							name="property_details" id="property_details" cssClass="combobox" theme="simple"
 							required="true" /> <s:fielderror fieldName="property_details"
-							theme="igr" cssClass="smallErrorMsg" /></td>
+							theme="igr" cssClass="smallErrorMsg" />
+							
 				</tr>
 
 				<tr>
-					<td class="tdLabel"><s:property value="getText('global.Book')" />*:</td>
-					<td class="field"><s:select headerKey="" headerValue="Select"
-							list="bookTypeList" name="book_id" id="book_id" cssClass="combobox"
-							theme="simple" required="true" /> <s:fielderror fieldName="book_id"
+					<td class="tdLabel"><s:property
+							value="getText('global.global.Book')" />*:</td><TD><s:select headerKey="" headerValue="Select"
+							list="bookTypeList" listKey="typeCode" listValue="typeDesc"
+							name="book_id" id="book_id" cssClass="combobox" theme="simple"
+							required="true" /> <s:fielderror fieldName="book_id"
 							theme="igr" cssClass="smallErrorMsg" /></td>
+						
 				</tr>
+								
 					<s:hidden name="deed_type_id" id="deed_type_id" />
 			</table>
 			</div>	
@@ -141,6 +144,8 @@
 </body>
 <script type="text/javascript">
 	function setValue(deed_type_id,deed_name,deed_code,property_details,book_id) {
+		
+		try{
 		var formInput = 'deed_type_id='+ deed_type_id;
 		var rowCount=0;
 		var options= '<caption class="formBlockCaption">Party Detail :~</caption>';
@@ -150,7 +155,6 @@
 		document.getElementById('deed_code').value=deed_code;
 		document.getElementById('property_details').value=property_details;
 		document.getElementById('book_id').value=book_id;
-		alert(deed_type_id);
 			$.getJSON('loadParty.action', formInput, function(data) {
 				$.each(data.validationPartyName, function(i, item) {
 				options +='<tr><td><input type="text" name="partyTypeValue" id="partyTypeValue" maxlength="10" class="field" value="'+item.typeDesc+'"></td><td><input type="hidden" name="partyTypeID" id="partyTypeID"  value="'+item.typeCode+'"></td><td><input type="button"  value="+" onclick="addRow();"></td><td><input type="button"  value="-" onclick="deleteRow(this);"/></tr>';
@@ -160,7 +164,7 @@
 				 document.getElementById("rownumber").value=rowCount;
 			});
 			
-			
+		}catch(Exception){alert(Exception);}	
 			
 		}
 	
@@ -176,23 +180,29 @@
 		houseNo.name = "partyTypeValue";
 		houseNo.setAttribute("class", "field");
 		cell1.appendChild(houseNo);
-
+		
 		var cell2 = row.insertCell(1);
+		var houseNo1 = document.createElement("input");
+		houseNo1.type = "hidden";
+		houseNo1.name = "partyTypeID";
+		cell2.appendChild(houseNo1);
+
+		var cell3 = row.insertCell(2);
 		var buttonAdd = document.createElement("input");
 		buttonAdd.type = "button";
 		buttonAdd.value = "+";
 		buttonAdd.setAttribute("onClick",
 				"javascript: addRow('partyTypeTable');");
-		cell2.appendChild(buttonAdd);
+		cell3.appendChild(buttonAdd);
 
-		var cell3 = row.insertCell(2);
+		var cell4 = row.insertCell(3);
 		var buttonDelete = document.createElement("input");
 		buttonDelete.type = "button";
 		buttonDelete.value ="-";
 		buttonDelete.setAttribute("onClick", "javascript:deleteRow(this)");
-		cell3.appendChild(buttonDelete);
+		cell4.appendChild(buttonDelete);
 		
-	 document.getElementById("rownumber").value=rowCount;
+	 document.getElementById("rownumber").value=rowCount+1;
 
 	}
 	function deleteRow(count) {

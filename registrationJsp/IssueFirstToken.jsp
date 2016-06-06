@@ -31,13 +31,12 @@
 					</s:textfield>
 				</td>	
 			<td class="tdLabel"><s:property value="getText('global.relation')" />*:</td>
-				<td class="field">
-					<s:select headerKey="" headerValue="Select"
-					list="relationList" required="true"
-					name="presenter_fh_rel" cssClass="field" theme="simple"/>
-					<s:fielderror fieldName="presenter_fh_rel" theme="igr"
-							cssClass="smallErrorMsg" />
-				</td>
+				<td class="field"><s:select headerKey="" headerValue="Select"
+							list="relationList" listKey="typeCode"
+							listValue="typeDesc" name="presenter_fh_rel"
+							cssClass="combobox" theme="simple" required="true" /> <s:fielderror
+							fieldName="presenter_fh_rel" theme="igr"
+							cssClass="smallErrorMsg" /></td>			
 				</tr>
 				<tr>
 				<td class="tdLabel"><s:property value="getText('global.gurdianname')" />*:</td>
@@ -64,9 +63,9 @@
 				<tr>
 					<td class="tdLabel"><s:property
 							value="getText('global.state')" />*:</td>
-					<td class="field"><s:select headerKey="0" headerValue="Select"
+					<td  class="field" ><s:select headerKey="0" headerValue="Select"
 							list="stateList" listKey="typeCode" listValue="typeDesc"
-							name="presenter_state" cssClass="combobox" theme="simple"
+							name="presenter_state" cssClass="largecombobox" theme="simple"
 							required="true" /> <s:fielderror fieldName="presenter_state"
 							theme="igr" cssClass="smallErrorMsg" /></td>
 							

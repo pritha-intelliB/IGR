@@ -37,7 +37,7 @@
 
 
 		 <!-- login action -->
-        <action name="LoginAction" class="com.igr.commonUtility.LoginAction" method="login">
+               <action name="LoginAction" class="com.igr.commonUtility.LoginAction" method="login">
                 <result name="success" type="redirect">homeAction</result>
                 <result name="login">/commonJsp/login.jsp</result>
         </action>
@@ -108,17 +108,16 @@
 		</action>
 
 
-		<action name="getDataValue" class="com.igr.registration.IssueSecondTokenAction"
-			method="getDataValue">
+<action name="loadStampNoValue" class="com.igr.registration.IssueSecondTokenAction"
+			method="loadStampNoValue">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<interceptor-ref name="mystack"></interceptor-ref>
 			<result name="success" type="json">
-				<param name="firstTokenNo" />
+				<param name="stamp_pages_no" />
 			</result>
 		</action>
 
-
-
+		
 		<action name="addSecondToken" class="com.igr.registration.IssueSecondTokenAction"
 			method="addSecondToken">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -156,17 +155,6 @@
 			<result name="invalid.token">masterJsp/DeedTypeEntry.jsp</result>
 		</action>
 
-
-		<action name="loadData" class="com.igr.master.DeedTypeEntry"
-			method="loadData">
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<interceptor-ref name="mystack"></interceptor-ref>
-			<result name="success" type="json">
-				<param name="rowNumber" />
-			</result>
-		</action>
-		
-	
 		
 
 		<action name="addDeedType" class="com.igr.master.DeedTypeEntry"
@@ -411,7 +399,104 @@
 			<result name="home">commonJsp/blankPage.jsp</result>
 		</action>
 		<!-- END OF DEED TYPE EDIT -->
+		
+		
+		
+		
+		
+		<!-- START SEARCH FIRST TOKEN FOR SECOND TOKEN -->
+		<action name="SearchFirstTokenforSecondToken"
+			class="com.igr.commonSearch.SearchFirstTokenforSecondToken">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">commonSearch/SearchFirstTokenForSecondToken.jsp</result>
+			<result name="input">commonSearch/SearchFirstTokenForSecondToken.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<action name="exitSearchFirstTokenForSecondToken"
+			class="com.igr.commonSearch.SearchFirstTokenforSecondToken" method="exitSearchFirstTokenForSecondToken">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END SEARCH FIRST TOKEN FOR SECOND TOKEN -->
+		
+		
+		
+			<!-- START SEARCH SECOND TOKEN FOR DEED ENTRY -->
+		<action name="SearchSecondTokenforDeedEntry"
+			class="com.igr.commonSearch.SearchSecondTokenforDeedEntry">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">commonSearch/SearchSecondTokenForDeedEntry.jsp</result>
+			<result name="input">commonSearch/SearchSecondTokenForDeedEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<action name="exitSearchSecondTokenForDeedEntry"
+			class="com.igr.commonSearch.SearchSecondTokenforDeedEntry" method="exitSearchSecondTokenForDeedEntry">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END SEARCH SECOND TOKEN FOR DEED ENTRY -->
+		
+		
+		
+		
+		<!-- START DEED ENTRY -->
+		<action name="DeedDetailEntryAction" class="com.igr.registration.DeedDetailEntryAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">*</param>
+				<param name="includeMethods">addDeedDetail</param>
+			</interceptor-ref>
+			<param name="edit">true</param>
+			<result name="success">registrationJsp/DeedDetailEntry.jsp</result>
+			<result name="input">registrationJsp/DeedDetailEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+			<result name="invalid.token">registrationJsp/DeedDetailEntry.jsp</result>
+		</action>
 
+		
+		
+		
+		<action name="loadCategory" class="com.igr.registration.DeedDetailEntryAction"
+			method="loadCategory">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="deed_type_id" />
+				<param name="language" />
+			</result>
+		</action>
+		
+		
+		<action name="loadStampValue" class="com.igr.registration.DeedDetailEntryAction"
+			method="loadStampValue">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="deed_category_id" />
+				<param name="considered_amount" />
+			</result>
+		</action>
+		
+
+
+		
+		<action name="addDeedDetail" class="com.igr.registration.DeedDetailEntryAction"
+			method="addDeedDetail">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="mystack"></interceptor-ref>
+			<result name="success">registrationJsp/DeedDetailEntry.jsp</result>
+			<result name="input">registrationJsp/DeedDetailEntry.jsp</result>
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+
+		<action name="exitDeedDetail" class="com.igr.registration.DeedDetailEntryAction"
+			method="exitDeedDetail">
+			<result name="home">commonJsp/blankPage.jsp</result>
+		</action>
+		<!-- END DEED ENTRY -->
+		
+		
 		
 	</package>
 

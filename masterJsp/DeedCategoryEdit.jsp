@@ -22,44 +22,43 @@
 							<div align="left"
 								style="height: 150px; width: 350px; overflow-x: hidden"
 								id="results">
-								<table id="deedCategoryTable" 
-									align="center" border="1"  style="height: 150px; width: 250px">
-				
-					<caption class="formBlockCaption">Deed Category :~</caption>
-									
+								<table id="deedCategoryTable" class="smallAppFormBlock" align="center" border="1" >
+
+									<caption class="formBlockCaption">Deed Category :~</caption>
+
 									<s:iterator value="deedCategoryList" status="status">
 										<tr>
-											<td class="shortfieldrowwise">
-												 <a href="#" id="add"
+											<td class="shortfieldrowwise"><a href="#" id="add"
 												onclick="setValue('<s:property value="deed_category_id" />',
 												               '<s:property value="deed_type_id" />',
 												               '<s:property value="category_name" />',
 												               '<s:property value="stamp_fee" />',
-												               '<s:property value="stamp_unit" />')"><s:property
-														value="category_name" /></a>
-
-											</td>
+												               '<s:property value="stamp_unit" />')"><font
+													color="BLUE"><s:property value="category_name" /></font></a></td>
 										</tr>
 									</s:iterator>
 								</table>
 							</div>
 						</s:if></td>
-						</tr>
-						<tr><td>-</td></tr>
-                     <tr>
+				</tr>
+				<tr>
+					<td>-</td>
+				</tr>
+				<tr>
 					<td align="center">
 
 						<div align="center">
-							<table align="center" cellspacing="2px"
-				cellpadding="1px" border="1">
-				<caption class="formBlockCaption">Deed Category Detail :~</caption>
+							<table align="center" cellspacing="2px" cellpadding="1px"
+								border="1">
+								<caption class="formBlockCaption">Deed Category Detail
+									:~</caption>
 								<tr>
 									<td class="tdLabel"><s:property
 											value="getText('global.Deed_Type_Name')" />*:</td>
 									<td class="field"><s:select headerKey=""
 											headerValue="Select" list="deedList" listKey="typeCode"
-											listValue="typeDesc" id="deedID" name="deedID" cssClass="combobox"
-											theme="simple" required="true" /> <s:fielderror
+											listValue="typeDesc" id="deedID" name="deedID"
+											cssClass="combobox" theme="simple" required="true" /> <s:fielderror
 											fieldName="deedID" theme="igr" cssClass="smallErrorMsg" /></td>
 								</tr>
 
@@ -83,7 +82,8 @@
 												cssClass="smallErrorMsg" />
 										</s:textfield></td>
 									<td class="field"><s:select headerKey=""
-											headerValue="Select" list="stampValueList" name="stamp_unit" id="stamp_unit"
+											headerValue="Select" list="stampValueList" listKey="typeCode"
+											listValue="typeDesc" name="stamp_unit" id="stamp_unit"
 											cssClass="combobox" theme="simple" required="true" /> <s:fielderror
 											fieldName="stamp_unit" theme="igr" cssClass="smallErrorMsg" /></td>
 								</tr>
@@ -92,7 +92,7 @@
 						</div>
 
 					</td>
-					 
+
 				</tr>
 			</table>
 
@@ -101,10 +101,10 @@
 
 
 			<div align="center">
-				<s:submit method="updateDeedCategory" cssClass="button" value="Update"
-					theme="simple" />
-				<s:submit method="deleteDeedCategory" cssClass="button" value="Delete"
-					theme="simple" />	
+				<s:submit method="updateDeedCategory" cssClass="button"
+					value="Update" theme="simple" />
+				<s:submit method="deleteDeedCategory" cssClass="button"
+					value="Delete" theme="simple" />
 				<input type="button" name="Exit" value="Exit" class="button"
 					onClick="window.location.href='exitDeedCategoryEdit';">
 			</div>
@@ -112,14 +112,14 @@
 	</s:form>
 </body>
 <script type="text/javascript">
-	function setValue(deed_category_id,deed_type_id,category_name,stamp_fee,stamp_unit) {
-		alert(deed_category_id);
-		document.getElementById('deedCategoryID').value=deed_category_id;
-		document.getElementById('deedID').value=deed_type_id;
-		document.getElementById('category_name').value=category_name;
-		document.getElementById('fee_val').value=stamp_fee;
-		document.getElementById('stamp_unit').value=stamp_unit;
-		
+	function setValue(deed_category_id, deed_type_id, category_name, stamp_fee,
+			stamp_unit) {
+		document.getElementById('deedCategoryID').value = deed_category_id;
+		document.getElementById('deedID').value = deed_type_id;
+		document.getElementById('category_name').value = category_name;
+		document.getElementById('fee_val').value = stamp_fee;
+		document.getElementById('stamp_unit').value = stamp_unit;
+
 	}
 </script>
 

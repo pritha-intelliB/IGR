@@ -39,27 +39,12 @@
 							cssClass="smallErrorMsg" />
 				</tr>
 				
-				<!--  
-				<tr>
-					<td class="tdLabel"><s:property
-							value="getText('global.Stamp_Value')" />*:</td>
-					<td class="field"><s:textfield name="fee_val"
-							cssClass="field" id="fee_val" required="true" theme="simple"
-							maxlength="10">
-							<s:fielderror fieldName="fee_val" theme="igr"
-								cssClass="smallErrorMsg" />
-						</s:textfield></td>
-					<td class="field"><s:select headerKey="" headerValue="Select"
-							list="stampValueList" name="depends_on" cssClass="combobox"
-							theme="simple" required="true" /> <s:fielderror
-							fieldName="depends_on" theme="igr" cssClass="smallErrorMsg" /></td>
-				</tr>
-				-->
+				
 				<tr>
 					<td class="tdLabel"><s:property
 							value="getText('global.Property_Required')" />*:</td>
 						<td class="field"><s:select headerKey="" headerValue="Select"
-							list="propertyRequiredList" listKey="typeDesc" listValue="typeCode"
+							list="propertyRequiredList" listKey="typeCode" listValue="typeDesc"
 							name="property_details" cssClass="combobox" theme="simple"
 							required="true" /> <s:fielderror fieldName="property_details"
 							theme="igr" cssClass="smallErrorMsg" /></td>
@@ -68,9 +53,15 @@
 				<tr>
 					<td class="tdLabel"><s:property value="getText('global.Book')" />*:</td>
 					<td class="field"><s:select headerKey="" headerValue="Select"
-							list="bookTypeList" name="book_id" cssClass="combobox"
-							theme="simple" required="true" /> <s:fielderror fieldName="book_id"
+							list="bookTypeList" listKey="typeCode" listValue="typeDesc"
+							name="book_id" cssClass="combobox" theme="simple"
+							required="true" /> <s:fielderror fieldName="book_id"
 							theme="igr" cssClass="smallErrorMsg" /></td>
+							
+							
+							
+							
+							
 				</tr>
 
 			</table>
@@ -141,7 +132,8 @@
 		buttonDelete.setAttribute("onClick", "javascript:deleteRow(this)");
 		cell3.appendChild(buttonDelete);
 		
-	 document.getElementById("rownumber").value=rowCount;
+	 document.getElementById("rownumber").value=rowCount+1;
+	
 
 	}
 	function deleteRow(count) {

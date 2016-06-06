@@ -7,17 +7,19 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/postgres</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		<property name="use_sql_comments">true</property>
+		  
 		<!--  
 		<property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
         -->
-		<mapping class="com.igr.hibernate.model.userLogModel" />
+        <mapping class="com.igr.hibernate.model.userLogModel" />
 		<mapping class="com.igr.hibernate.model.provisionalTokenTypeModel" />
 		<mapping class="com.igr.hibernate.model.deedTypeModel" />
 		<mapping class="com.igr.hibernate.model.partyTypeModel" />
 		<mapping class="com.igr.hibernate.model.feeStructureModel" />
 		<mapping class="com.igr.hibernate.model.deedCategoryModel" />
+		<mapping class="com.igr.hibernate.model.secondTokenTypeModel" />
+		<mapping class="com.igr.hibernate.model.deedDetailModel" />
 	</session-factory>
 </hibernate-configuration>
